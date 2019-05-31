@@ -77,30 +77,27 @@ $(document).ready(function () {
 
         function checkAnswer() {
             $("#buttons").addClass("d-none");
+            $("#answerResult").removeClass("d-none");
+            $("#correctResult").removeClass("d-none");
 
-            var newDiv = $("<div id='displayResult' /div>");
-            newDiv.addClass("row justify-content-center");
             var newDiv2 = $("<div id='displayAnswer' /div>");
             newDiv2.addClass("row justify-content-center");
             newDiv2.text("Correct Answer: " + questions[questionIndex].correct);
 
             if (key === questions[questionIndex].correct) {
                 score++;
-                newDiv.text("Correct!");
-                $(".jumbotron").append(newDiv);
+                $("#answerResult").text("Correct!");
                 console.log("you got " + score);
             } else if (key === "NA") {
                 unanswered++;
-                newDiv.text("Out of Time!");
-                $(".jumbotron").append(newDiv);
-                $(".jumbotron").append(newDiv2);
+                $("#answerResult").text("Out of Time!");
+                $("#correctResult").text("Correct Answer: " + questions[questionIndex].correct);
                 console.log("unanswered " + unanswered);
             }
             else {
                 incorrect++;
-                newDiv.text("Incorrect!");
-                $(".jumbotron").append(newDiv);
-                $(".jumbotron").append(newDiv2);
+                $("#answerResult").text("Incorrect!");
+                $("#correctResult").text("Correct Answer: " + questions[questionIndex].correct);
                 console.log("incorrect " + incorrect);
             }
         }
