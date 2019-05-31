@@ -1,55 +1,101 @@
 $(document).ready(function () {
 
-    var questions = {
-        question1: {
+    var questions = [
+        question1 = {
             question: "pick red",
+            option1: "red",
+            option2: "blue",
+            option3: "green",
+            option4: "white",
             correct: "red",
-            wrong: "blue",
-            wrong1: "green",
-            wrong2: "white"
         },
-        question2: {
+        question2 = {
             question: "pick blue",
+            option1: "white",
+            option2: "red",
+            option3: "green",
+            option4: "blue",
             correct: "blue",
-            wrong: "red",
-            wrong1: "green",
-            wrong2: "white"
         },
-        question3: {
+        question3 = {
             question: "pick white",
+            option1: "green",
+            option2: "blue",
+            option3: "white",
+            option4: "red",
             correct: "white",
-            wrong: "blue",
-            wrong1: "green",
-            wrong2: "red"
         },
-    }
+    ]
 
     var timerID;
-    var number = 10;
+    var timer = 5;
+    var questionIndex = 0;
+    var score = 0;
+    var incorrect = 0;
+    var unanswered = 0;
 
 
     $(".start").on('click', function () {
         $("#startPage").addClass("d-none");
         $("#questionPage").removeClass("d-none");
-        timerID = setInterval(countdown, 1000);
+        startTrivia();
     });
 
     function countdown() {
 
-        number--;
+        timer--;
   
-        $("#countdown").text(number);
+        $("#countdown").text(timer);
   
-        if (number === 0) {
-          stopTrivia();
-          setTimeout(showAnswer, 1000);
+        if (timer === 0) {
         }
-      }
+    }
+
+    function showAnswer() {
+
+    }
+
+    function askQuestion() {
+
+        timer = 5;
+        timerID = setInterval(countdown, 1000);
+        var key = "NA";
+        var timeoutID = setTimeout(checkAnswer, 5000);
+
+        $("#question").text(questions[questionIndex].question);
+        $("#choice1").text(questions[questionIndex].option1);
+        $("#choice1").val(questions[questionIndex].option1);
+        $("#choice2").text(questions[questionIndex].option2);
+        $("#choice2").val(questions[questionIndex].option2);
+        $("#choice3").text(questions[questionIndex].option3);
+        $("#choice3").val(questions[questionIndex].option3);
+        $("#choice4").text(questions[questionIndex].option4);
+        $("#choice4").val(questions[questionIndex].option4);
 
 
+        $(".btn").on('click', function() {
+            key = this.value;
+            clearTimeout(timeoutID);
+            checkAnswer();
+        });
+
+        function checkAnswer() {
+            if (key === questions[questionIndex].correct) {
+                score++;
+                console.log("you got " + score);
+            } else if (key === "NA") {
+                unanswered++;
+                console.log("unanswered " + unanswered);
+            }
+            else {
+                incorrect++;
+                console.log("incorrect " + incorrect);
+            }
+        }
+    }
 
     function startTrivia() {
-        timerID = setInterval(askQuestion, 3000);
+        askQuestion();
     }
 
     function stopTrivia() {
