@@ -80,10 +80,6 @@ $(document).ready(function () {
             $("#answerResult").removeClass("d-none");
             $("#correctResult").removeClass("d-none");
 
-            var newDiv2 = $("<div id='displayAnswer' /div>");
-            newDiv2.addClass("row justify-content-center");
-            newDiv2.text("Correct Answer: " + questions[questionIndex].correct);
-
             if (key === questions[questionIndex].correct) {
                 score++;
                 $("#answerResult").text("Correct!");
