@@ -44,18 +44,15 @@ $(document).ready(function () {
     function countdown() {
 
         timer--;
-  
+
         $("#countdown").text(timer);
-  
+
         if (timer === 0) {
+            clearInterval(timerID);
         }
     }
 
-    function showAnswer() {
-
-    }
-
-    function askQuestion() {
+    function askQuestions() {
 
         timer = 5;
         timerID = setInterval(countdown, 1000);
@@ -73,33 +70,50 @@ $(document).ready(function () {
         $("#choice4").val(questions[questionIndex].option4);
 
 
-        $(".btn").on('click', function() {
+        $(".btn").on('click', function () {
             key = this.value;
             clearTimeout(timeoutID);
+            clearInterval(timerID);
             checkAnswer();
         });
 
         function checkAnswer() {
+            $("#buttons").addClass("d-none");
+
+            var newDiv = $("<div id='displayResult' /div>");
+            newDiv.addClass("row justify-content-center");
+            var newDiv2 = $("<div id='displayAnswer' /div>");
+            newDiv2.addClass("row justify-content-center");
+            newDiv2.text("Correct Answer: " + questions[questionIndex].correct);
+
             if (key === questions[questionIndex].correct) {
                 score++;
+                newDiv.text("Correct!");
+                $(".jumbotron").append(newDiv);
                 console.log("you got " + score);
             } else if (key === "NA") {
                 unanswered++;
+                newDiv.text("Out of Time!");
+                $(".jumbotron").append(newDiv);
+                $(".jumbotron").append(newDiv2);
                 console.log("unanswered " + unanswered);
             }
             else {
                 incorrect++;
+                newDiv.text("Incorrect!");
+                $(".jumbotron").append(newDiv);
+                $(".jumbotron").append(newDiv2);
                 console.log("incorrect " + incorrect);
             }
         }
     }
 
     function startTrivia() {
-        askQuestion();
+        askQuestions();
     }
 
     function stopTrivia() {
         clearInterval(timerID);
     }
-    
+
 });
