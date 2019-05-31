@@ -35,9 +35,7 @@ $(document).ready(function () {
     var unanswered = 0;
 
 
-    $(".start").on('click', function () {
-        $("#startPage").addClass("d-none");
-        $("#questionPage").removeClass("d-none");
+    $("#start").on('click', function () {
         startTrivia();
     });
 
@@ -109,6 +107,11 @@ $(document).ready(function () {
     }
 
     function startTrivia() {
+        $("#buttons").removeClass('d-none');
+        $("#question").removeClass('d-none');
+        $("#countdown").removeClass('d-none');
+        $("#description").addClass("d-none");
+        $("#start").addClass("d-none");
         askQuestions();
     }
 

@@ -26,33 +26,22 @@
                 <div class="row justify-content-center">
                     <h1 class="display-2">Marvel Universe Trivia</h1>
                 </div>
-                <div class="row justify-content-center">
+                <div id="description" class="row justify-content-center">
                     <p class="lead">Test your knowledge of the Marvel cinematic universe in this webbrowser triva
                         game!
                     </p>
                 </div>
-                <hr class="my-4">
                 <div class="row justify-content-center">
-                    <button class="btn btn-primary btn-lg start" role="button">Start</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="questionPage" class="row justify-content-center no-gutters d-none">
-        <div class="col-md-9">
-            <div class="jumbotron">
-                <div class="row justify-content-center">
-                    <h1 class="display-2">Marvel Universe Trivia</h1>
+                    <h1 id="question" class="display-4 d-none">Question</h1>
                 </div>
                 <div class="row justify-content-center">
-                        <h1 id="question" class="display-4">Question</h1>
-                    </div>
-                <div class="row justify-content-center">
-                    <h2 id="countdown" class="display-6">5</h2>
+                    <h2 id="countdown" class="display-6 d-none">5</h2>
                 </div>
                 <hr class="my-4">
-                <div id="buttons" class="row justify-content-center">
+                <div class="row justify-content-center">
+                    <button id="start" class="btn btn-primary btn-lg" role="button">Start</button>
+                </div>
+                <div id="buttons" class="row justify-content-center d-none">
                     <div class="btn-group-vertical btn-block btn-lg" role="group" aria-label="Basic example">
                         <button id="choice1" type="button" class="btn btn-secondary" value="#">Option 1</button>
                         <button id="choice2" type="button" class="btn btn-secondary" value="#">Option 2</button>
