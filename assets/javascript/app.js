@@ -41,6 +41,18 @@ $(document).ready(function () {
         startTrivia();
     });
 
+    $("#restart").on('click', function () {
+        timer = 5;
+        questionIndex = 0;
+        score = 0;
+        incorrect = 0;
+        unanswered = 0;
+
+        $("#endgame").addClass("d-none");
+
+        startTrivia();
+    });
+
     function countdown() {
 
         timer--;
@@ -112,8 +124,12 @@ $(document).ready(function () {
             console.log("incorrect " + incorrect);
         }
         questionIndex++;
-        console.log(questionIndex);
-        setTimeout(askQuestions, 3000);
+        if (questionIndex === questions.length) {
+            setTimeout(endTrivia, 3000);
+        }
+        else {
+            setTimeout(askQuestions, 3000);
+        }
     }
 
     function startTrivia() {
@@ -125,8 +141,15 @@ $(document).ready(function () {
         askQuestions();
     }
 
-    function stopTrivia() {
-        clearInterval(timerID);
+    function endTrivia() {
+        $("#buttons").addClass("d-none");
+        $("#answerResult").addClass("d-none");
+        $("#correctResult").addClass("d-none");
+
+        $("#endgame").removeClass("d-none");
+        $("#correct").text("Corect Answers: " + score);
+        $("#incorrect").text("Incorect Answers: " + incorrect);
+        $("#unanswered").text("Unanswered: " + unanswered);
     }
 
 });
