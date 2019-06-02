@@ -28,11 +28,13 @@ $(document).ready(function () {
     ]
 
     var timerID;
+    var timeoutID;
     var timer = 5;
     var questionIndex = 0;
     var score = 0;
     var incorrect = 0;
     var unanswered = 0;
+    var key;
 
 
     $("#start").on('click', function () {
@@ -50,12 +52,26 @@ $(document).ready(function () {
         }
     }
 
+    $(".option").on('click', function () {
+        console.log("i clicked");
+        key = this.value;
+        console.log(key);
+        clearTimeout(timeoutID);
+        clearInterval(timerID);
+        checkAnswer();
+    });
+
     function askQuestions() {
 
         timer = 5;
+        $("#countdown").text(timer);
         timerID = setInterval(countdown, 1000);
-        var key = "NA";
-        var timeoutID = setTimeout(checkAnswer, 5000);
+        key = "NA";
+        timeoutID = setTimeout(checkAnswer, 5000);
+
+        $("#buttons").removeClass("d-none");
+        $("#answerResult").addClass("d-none");
+        $("#correctResult").addClass("d-none");
 
         $("#question").text(questions[questionIndex].question);
         $("#choice1").text(questions[questionIndex].option1);
@@ -66,37 +82,38 @@ $(document).ready(function () {
         $("#choice3").val(questions[questionIndex].option3);
         $("#choice4").text(questions[questionIndex].option4);
         $("#choice4").val(questions[questionIndex].option4);
+    }
 
+    function checkAnswer() {
+        clearTimeout(timeoutID);
+        clearInterval(timerID);
 
-        $(".btn").on('click', function () {
-            key = this.value;
-            clearTimeout(timeoutID);
-            clearInterval(timerID);
-            checkAnswer();
-        });
+        $("#buttons").addClass("d-none");
+        $("#answerResult").removeClass("d-none");
+        console.log(questionIndex);
 
-        function checkAnswer() {
-            $("#buttons").addClass("d-none");
-            $("#answerResult").removeClass("d-none");
-            $("#correctResult").removeClass("d-none");
-
-            if (key === questions[questionIndex].correct) {
-                score++;
-                $("#answerResult").text("Correct!");
-                console.log("you got " + score);
-            } else if (key === "NA") {
-                unanswered++;
-                $("#answerResult").text("Out of Time!");
-                $("#correctResult").text("Correct Answer: " + questions[questionIndex].correct);
-                console.log("unanswered " + unanswered);
-            }
-            else {
-                incorrect++;
-                $("#answerResult").text("Incorrect!");
-                $("#correctResult").text("Correct Answer: " + questions[questionIndex].correct);
-                console.log("incorrect " + incorrect);
-            }
+        if (key === questions[questionIndex].correct) {
+            score++;
+            $("#answerResult").text("Correct!");
+            console.log("correct " + score);
         }
+        else if (key === "NA") {
+            unanswered++;
+            $("#answerResult").text("Out of Time!");
+            $("#correctResult").removeClass("d-none");
+            $("#correctResult").text("Correct Answer: " + questions[questionIndex].correct);
+            console.log("unanswered " + unanswered);
+        }
+        else {
+            incorrect++;
+            $("#answerResult").text("Incorrect!");
+            $("#correctResult").removeClass("d-none");
+            $("#correctResult").text("Correct Answer: " + questions[questionIndex].correct);
+            console.log("incorrect " + incorrect);
+        }
+        questionIndex++;
+        console.log(questionIndex);
+        setTimeout(askQuestions, 3000);
     }
 
     function startTrivia() {
