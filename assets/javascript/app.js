@@ -8,6 +8,7 @@ $(document).ready(function () {
             option3: "Just Another Rather Very Intellectual System",
             option4: "Just Another Rather Very Intelligent Subsystem",
             correct: "Just Another Rather Very Intelligent System",
+            image: "assets/images/question1.gif"
         },
         question2 = {
             question: "What mission do Black Widow and Hawkeye refer to in the first avenegers film?",
@@ -16,6 +17,7 @@ $(document).ready(function () {
             option3: "Bangladesh",
             option4: "Bangalore",
             correct: "Budapest",
+            image: "assets/images/question2.gif"
         },
         question3 = {
             question: "Which armor mark first used the iconic red and gold coloring from the comics?",
@@ -24,6 +26,7 @@ $(document).ready(function () {
             option3: "Mark 3",
             option4: "Mark 4",
             correct: "Mark 3",
+            image: "assets/images/question3.gif"
         },
         question4 = {
             question: "At the end of The Incredible Hulk, how many days without incident did Bruce Banner achieve?",
@@ -32,6 +35,7 @@ $(document).ready(function () {
             option3: "30",
             option4: "31",
             correct: "31",
+            image: "assets/images/question4.gif"
         },
         question5 = {
             question: "What does SHIELD stands for?",
@@ -40,6 +44,7 @@ $(document).ready(function () {
             option3: "Supreme Headquarters, International Espionage and Law-Enforcement Division",
             option4: "Strategic Homeland Intervention Espionage Logistics Directorate",
             correct: "Strategic Homeland Intervention, Enforcement and Logistics Division",
+            image: "assets/images/question5.gif"
         },
         question6 = {
             question: "In which movie did Elon Musk make a guest appearence?",
@@ -48,6 +53,7 @@ $(document).ready(function () {
             option3: "The Incredible Hulk",
             option4: "Avengers",
             correct: "Iron Man 2",
+            image: "assets/images/question6.gif"
         },
         question7 = {
             question: "What is Captain America's shield made of?",
@@ -56,6 +62,7 @@ $(document).ready(function () {
             option3: "Reverbium",
             option4: "Vibranium",
             correct: "Vibranium",
+            image: "assets/images/question7.gif"
         },
         question8 = {
             question: "Thor is the god of what?",
@@ -64,6 +71,7 @@ $(document).ready(function () {
             option3: "Lightning",
             option4: "Storms",
             correct: "Thunder",
+            image: "assets/images/question8.gif"
         },
         question9 = {
             question: "Which of these is worthy of Thor's Hammer?",
@@ -72,14 +80,16 @@ $(document).ready(function () {
             option3: "Floor",
             option4: "Table",
             correct: "Coat Hanger",
+            image: "assets/images/question9.gif"
         },
         question10 = {
-            question: "What year does Avengers: Endgame take place?",
-            option1: "2018",
-            option2: "2019",
-            option3: "2021",
-            option4: "2023",
-            correct: "2023",
+            question: "How many futures did Dr. Strange see in Avengers: Infinity War?",
+            option1: "14,000,605",
+            option2: "1,000,000,000",
+            option3: "14,000,604",
+            option4: "9000",
+            correct: "14,000,605",
+            image: "assets/images/question10.gif"
         },
     ]
 
@@ -140,6 +150,7 @@ $(document).ready(function () {
         $("#buttons").removeClass("d-none");
         $("#answerResult").addClass("d-none");
         $("#correctResult").addClass("d-none");
+        $("#image").addClass("d-none");
 
         $("#question").text(questions[questionIndex].question);
         $("#choice1").text(questions[questionIndex].option1);
@@ -179,6 +190,8 @@ $(document).ready(function () {
             $("#correctResult").text("Correct Answer: " + questions[questionIndex].correct);
             console.log("incorrect " + incorrect);
         }
+        $("#image").removeClass("d-none");
+        $("#image").attr('src', questions[questionIndex].image);
         questionIndex++;
         if (questionIndex === questions.length) {
             setTimeout(endTrivia, 3000);
@@ -201,6 +214,7 @@ $(document).ready(function () {
         $("#buttons").addClass("d-none");
         $("#answerResult").addClass("d-none");
         $("#correctResult").addClass("d-none");
+        $("#image").addClass("d-none");
 
         $("#endgame").removeClass("d-none");
         $("#correct").text("Corect Answers: " + score);
