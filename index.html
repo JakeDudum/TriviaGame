@@ -40,25 +40,31 @@
                 <hr class="my-4">
                 <div class="row justify-content-center">
                     <button id="start" class="btn btn-primary btn-lg" role="button">Start</button>
-                    <p id="answerResult" class="d-none"></p>
                 </div>
                 <div class="row justify-content-center">
-                    <p id="correctResult" class="d-none"></p>
+                    <div class="col-md-12 text-center">
+                        <h3 id="answerResult" class="d-none"></h3>
+                        <h3 id="correctResult" class="d-none"></h3>
+                    </div>
                 </div>
                 <div id="buttons" class="row justify-content-center d-none">
                     <div class="btn-group-vertical btn-block btn-lg" role="group" aria-label="Basic example">
-                        <button id="choice1" type="button" class="btn btn-secondary option" value="#">Option 1</button>
-                        <button id="choice2" type="button" class="btn btn-secondary option" value="#">Option 2</button>
-                        <button id="choice3" type="button" class="btn btn-secondary option" value="#">Option 3</button>
-                        <button id="choice4" type="button" class="btn btn-secondary option" value="#">Option 4</button>
+                        <button id="choice1" type="button" class="btn btn-secondary option py-3" value="#">Option
+                            1</button>
+                        <button id="choice2" type="button" class="btn btn-secondary option py-3" value="#">Option
+                            2</button>
+                        <button id="choice3" type="button" class="btn btn-secondary option py-3" value="#">Option
+                            3</button>
+                        <button id="choice4" type="button" class="btn btn-secondary option py-3" value="#">Option
+                            4</button>
                     </div>
                 </div>
                 <div id="endgame" class="row justify-content-center d-none">
                     <div class="col-md-12 text-center">
-                        <p>ENDGAME RESULTS</p>
-                        <p id="correct"></p>
-                        <p id="incorrect"></p>
-                        <p id="unanswered"></p>
+                        <h3>ENDGAME RESULTS</h3>
+                        <h3 id="correct"></h3>
+                        <h3 id="incorrect"></h3>
+                        <h3 id="unanswered"></h3>
                         <button id="restart" class="btn btn-primary btn-lg" role="button">Restart</button>
                     </div>
                 </div>
