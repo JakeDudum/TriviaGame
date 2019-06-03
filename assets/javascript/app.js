@@ -131,9 +131,7 @@ $(document).ready(function () {
     }
 
     $(".option").on('click', function () {
-        console.log("i clicked");
         key = this.value;
-        console.log(key);
         clearTimeout(timeoutID);
         clearInterval(timerID);
         checkAnswer();
@@ -169,30 +167,28 @@ $(document).ready(function () {
 
         $("#buttons").addClass("d-none");
         $("#answerResult").removeClass("d-none");
-        console.log(questionIndex);
 
         if (key === questions[questionIndex].correct) {
             score++;
             $("#answerResult").text("Correct!");
-            console.log("correct " + score);
         }
         else if (key === "NA") {
             unanswered++;
             $("#answerResult").text("Out of Time!");
             $("#correctResult").removeClass("d-none");
             $("#correctResult").text("Correct Answer: " + questions[questionIndex].correct);
-            console.log("unanswered " + unanswered);
         }
         else {
             incorrect++;
             $("#answerResult").text("Incorrect!");
             $("#correctResult").removeClass("d-none");
             $("#correctResult").text("Correct Answer: " + questions[questionIndex].correct);
-            console.log("incorrect " + incorrect);
         }
         $("#image").removeClass("d-none");
         $("#image").attr('src', questions[questionIndex].image);
+
         questionIndex++;
+        
         if (questionIndex === questions.length) {
             setTimeout(endTrivia, 3000);
         }
