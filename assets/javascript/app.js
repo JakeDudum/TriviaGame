@@ -95,7 +95,7 @@ $(document).ready(function () {
 
     var timerID;
     var timeoutID;
-    var timer = 5;
+    var timer = 10;
     var questionIndex = 0;
     var score = 0;
     var incorrect = 0;
@@ -108,7 +108,7 @@ $(document).ready(function () {
     });
 
     $("#restart").on('click', function () {
-        timer = 5;
+        timer = 10;
         questionIndex = 0;
         score = 0;
         incorrect = 0;
@@ -139,11 +139,11 @@ $(document).ready(function () {
 
     function askQuestions() {
 
-        timer = 5;
+        timer = 10;
         $("#countdown").text(timer);
         timerID = setInterval(countdown, 1000);
         key = "NA";
-        timeoutID = setTimeout(checkAnswer, 5000);
+        timeoutID = setTimeout(checkAnswer, 10000);
 
         $("#buttons").removeClass("d-none");
         $("#answerResult").addClass("d-none");
